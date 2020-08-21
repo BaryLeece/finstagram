@@ -2,6 +2,9 @@
   box-sizing: border-box;
 }
 
+body {
+    background-color: black
+    
 body, input {
   font-family: 'Roboto Condensed', sans-serif;
   margin: 0;
