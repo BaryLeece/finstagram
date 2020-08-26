@@ -3,12 +3,13 @@
 }
 
 body {
-    background-color: black
+    background-color: black;
+}
     
 body, input {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Reenie Beanie', cursive;
   margin: 0;
-  color: #244751;
+  color: #315964;
 }
 
 a {
