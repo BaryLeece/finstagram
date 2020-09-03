@@ -1,0 +1,11 @@
+section ol li {
+        list-style: none;
+}
+
+.color-red {
+    color: red;
+}
+
+#title {
+        color: greenyellow;
+}
