@@ -1,16 +1,13 @@
-get '/' do
-  File.read(File.join('app/views', 'index.html'))
+def humanized_time_ago(humanized_time_ago)
+    if humanized_time_ago >= 60
+        "#{humanized_time_ago / 60} hours ago"
+    else
+        "#{humanized_time_ago} minutes ago"
+    end
 end
 
-def humanized_time_ago(humanized_time_ago)
-  if humanized_time_ago >= 60
-    "#{humanized_time_ago / 60} hours ago"
-  else
-    "#{humanized_time_ago} minutes ago"
-  end
-end
 get '/' do
-  finstagram_post_shark = {
+  @finstagram_post_shark = {
     username: "sharky_j",
     avatar_url: "http://naserca.com/images/sharky_j.jpg",
     photo_url: "http://naserca.com/images/shark.jpg",
@@ -22,7 +19,8 @@ get '/' do
       text: "Out for the long weekend... too embarrassed to show y'all the beach bod!"
     }]
   }
-  finstagram_post_whale = {
+
+  @finstagram_post_whale = {
     username: "kirk_whalum",
     avatar_url: "http://naserca.com/images/kirk_whalum.jpg",
     photo_url: "http://naserca.com/images/whale.jpg",
@@ -34,7 +32,8 @@ get '/' do
       text: "#weekendvibes"
     }]
   }
-  finstagram_post_marlin = {
+
+  @finstagram_post_marlin = {
     username: "marlin_peppa",
     avatar_url: "http://naserca.com/images/marlin_peppa.jpg",
     photo_url: "http://naserca.com/images/marlin.jpg",
@@ -46,6 +45,8 @@ get '/' do
       text: "lunchtime! ;)"
     }]
   }
-   [finstagram_post_shark, finstagram_post_whale, finstagram_post_marlin].to_s
-erb(:index)
+
+  [@finstagram_post_shark, @finstagram_post_whale, @finstagram_post_marlin].to_s
+
+  erb(:index)
 end
