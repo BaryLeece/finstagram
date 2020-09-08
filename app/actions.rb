@@ -7,7 +7,7 @@ def humanized_time_ago(humanized_time_ago)
 end
 
 get '/' do
-  @finstagram_post_shark = {
+finstagram_post_shark = {
     username: "sharky_j",
     avatar_url: "http://naserca.com/images/sharky_j.jpg",
     photo_url: "http://naserca.com/images/shark.jpg",
@@ -46,7 +46,11 @@ get '/' do
     }]
   }
 
-  [@finstagram_post_shark, @finstagram_post_whale, @finstagram_post_marlin].to_s
+  get '/' do
+  # your previous finstagram post code is up here
+  # add the following @finstagram_posts line
+
+  @finstagram_posts = [@finstagram_post_shark, @finstagram_post_whale, @finstagram_post_marlin]
 
   erb(:index)
 end
