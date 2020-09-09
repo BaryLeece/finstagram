@@ -1,46 +1,3 @@
-<!-- <article class="finstagram-post">
-  <div class="user-info">
-    <img src="<%= @finstagram_post_whale[:avatar_url] %>" alt="<%= @finstagram_post_whale[:username] %>">
-    <h2><%= @finstagram_post_whale[:username] %></h2>
-    <h3><%= @finstagram_post_whale[:humanized_time_ago] %></h3>
-  </div>
-  <a class="photo" href="#">
-    <img src="<%= @finstagram_post_whale[:photo_url] %>" alt="finstagram post from <%= @finstagram_post_whale[:username] %>">
-  </a>
-  <div class="actions">
-    <%= @finstagram_post_whale[:like_count] %> likes
-    <span class="comment-count"><%= @finstagram_post_whale[:comment_count] %> comment</span>
-  </div>
-  <ul class="comments">
-    <li>
-      <p>
-        <%= @finstagram_post_whale[:comments][0][:username] %>: <%= @finstagram_post_whale[:comments][0][:text] %>
-      </p>
-    </li>
-  </ul>
-</article>
-<article class="finstagram-post">
-  <div class="user-info">
-    <img src="<%= @finstagram_post_marlin[:avatar_url] %>" alt="<%= @finstagram_post_marlin[:username] %>">
-    <h2><%= @finstagram_post_marlin[:username] %></h2>
-    <h3><%= @finstagram_post_marlin[:humanized_time_ago] %></h3>
-  </div>
-  <a class="photo" href="#">
-    <img src="<%= @finstagram_post_marlin[:photo_url] %>" alt="finstagram post from <%= @finstagram_post_marlin[:username] %>">
-  </a>
-  <div class="actions">
-    <%= @finstagram_post_marlin[:like_count] %> likes
-    <span class="comment-count"><%= @finstagram_post_marlin[:comment_count] %> comment</span>
-  </div>
-  <ul class="comments">
-    <li>
-      <p>
-        <%= @finstagram_post_marlin[:comments][0][:username] %>: <%= @finstagram_post_marlin[:comments][0][:text] %>
-      </p>
-    </li>
-  </ul>
-</article> -->
-
 <header>
   <h1>Finstagram</h1>
 </header>
@@ -48,22 +5,22 @@
   <% @finstagram_posts.each do |finstagram_post| %>
     <article class="finstagram-post">
       <div class="user-info">
-        <img src="<%= finstagram_post[:avatar_url] %>" alt="<%= finstagram_post[:username] %>">
-        <h2><%= finstagram_post[:username] %></h2>
-        <h3><%= finstagram_post[:humanized_time_ago] %></h3>
+        <img src="<%= finstagram_post.user.avatar_url %>" alt="<%= finstagram_post.user.username %>">
+        <h2><%= finstagram_post.user.username %></h2>
+        <h3><%= finstagram_post.humanized_time_ago %></h3>
       </div>
       <a class="photo" href="#">
-        <img src="<%= finstagram_post[:photo_url] %>" alt="finstagram post from <%= finstagram_post[:username] %>">
+        <img src="<%= finstagram_post.photo_url %>" alt="finstagram post from <%= finstagram_post.user.username %>">
       </a>
       <div class="actions">
-        <%= finstagram_post[:like_count] %> likes
-        <span class="comment-count"><%= finstagram_post[:comment_count] %> comment</span>
+        <%= finstagram_post.like_count %> likes
+        <span class="comment-count"><%= finstagram_post.comment_count %> comments</span>
       </div>
       <ul class="comments">
-        <% finstagram_post[:comments].each do |comment| %>
+        <% finstagram_post.comments.each do |comment| %>
           <li>
             <p>
-              <%= comment[:username] %>: <%= comment[:text] %>
+              <%= comment.user.username %>: <%= comment.text %>
             </p>
           </li>
         <% end %>
@@ -71,3 +28,4 @@
     </article>
   <% end %>
 </main>
+    
