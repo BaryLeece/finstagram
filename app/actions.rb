@@ -1,6 +1,9 @@
-get '/' do
+get '/login' do    # when a GET request comes into /login
+  erb(:login)      # render app/views/login.erb
+end
 
-@finstagram_posts = FinstagramPost.order(created_at: :desc)
+get '/' do
+  @finstagram_posts = FinstagramPost.order(created_at: :desc)
   erb(:index)
 end
 
@@ -21,5 +24,26 @@ post '/signup' do
     "User #{username} saved!"
   else
     erb(:signup)
+  end
+end
+
+post '/login' do
+  username = params[:username]
+  password = params[:password]
+
+  @user = User.find_by(username: username)  
+
+  if @user && @user.password == password
+    session[:user_id] = @user.id
+    "Success! User with id #{session[:user_id]} is logged in!"
+  else
+    @error_message = "Login failed."
+    erb(:login)
+  end
+end
+
+helpers do
+  def current_user
+    User.find_by(id: session[:user_id])
   end
 end
