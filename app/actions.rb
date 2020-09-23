@@ -4,6 +4,7 @@ end
 
 get '/' do
   @finstagram_posts = FinstagramPost.order(created_at: :desc)
+  @current_user = User.find_by(id: session[:user_id])
   erb(:index)
 end
 
