@@ -24,8 +24,24 @@ post '/finstagram_posts' do
   params.to_s
 end
 
-get '/finstagram_posts/:id' do
-  params[:id]
+post '/comments' do
+  # point values from params to variables
+  text = params[:text]
+  finstagram_post_id = params[:finstagram_post_id]
+
+  # instantiate a comment with those values & assign the comment to the `current_user`
+  comment = Comment.new({ text: text, finstagram_post_id: finstagram_post_id, user_id: current_user.id })
+
+  # save the comment
+  comment.save
+
+  # `redirect` back to wherever we came from
+  redirect(back)
+end
+
+get '/finstagram_posts/new' do
+    @finstagram_post = FinstagramPost.new
+  erb(:"finstagram_posts/new") 
 end
 
 get '/finstagram_posts/:id' do
@@ -48,6 +64,15 @@ post '/signup' do
   end
 end
 
+post '/likes' do
+  finstagram_post_id = params[:finstagram_post_id]
+
+  like = Like.new({ finstagram_post_id: finstagram_post_id, user_id: current_user.id })
+  like.save
+
+  redirect(back)
+end
+
 post '/login' do
   username = params[:username]
   password = params[:password]
@@ -61,6 +86,12 @@ post '/login' do
     @error_message = "Login failed."
     erb(:login)
   end
+end
+
+delete '/likes/:id' do
+  like = Like.find(params[:id])
+  like.destroy
+  redirect(back)
 end
 
 get '/logout' do
